@@ -71,7 +71,7 @@ def deploy():
         sudo('ln -s %s www' % newdir)
         sudo('chown www-data:www-data www')
         sudo('chown -R www-data:www-data %s' % newdir)
-        sudo('find . -type f -exec dos2unix {} \;')
+        sudo('find %s/%s -type f -name "*.py" -exec dos2unix {} \;' % (_REMOTE_BASE_DIR, newdir))
     with settings(warn_only=True):
         sudo('supervisorctl stop awesome')
         sudo('supervisorctl start awesome')
