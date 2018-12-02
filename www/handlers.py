@@ -75,19 +75,24 @@ def cookie2user(cookie_str):
         logging.exception(e)
         return None
 
+#@get('/')
+#def index(*, page='1'):
+#    page_index = get_page_index(page)
+#    num = yield from Blog.findNumber('count(id)')
+#    page = Page(num)
+#    if num == 0:
+#        blogs = []
+#    else:
+#        blogs = yield from Blog.findAll(orderBy='created_at desc', limit=(page.offset, page.limit))
+#    return {
+#        '__template__': 'blogs.html',
+#        'page': page,
+#        'blogs': blogs
+#    }
 @get('/')
-def index(*, page='1'):
-    page_index = get_page_index(page)
-    num = yield from Blog.findNumber('count(id)')
-    page = Page(num)
-    if num == 0:
-        blogs = []
-    else:
-        blogs = yield from Blog.findAll(orderBy='created_at desc', limit=(page.offset, page.limit))
+def index():
     return {
-        '__template__': 'blogs.html',
-        'page': page,
-        'blogs': blogs
+        '__template__': 'index.html'
     }
 
 @get('/blog/{id}')
